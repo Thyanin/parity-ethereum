@@ -25,6 +25,8 @@ use types::filter::Filter as EthcoreFilter;
 use types::ids::BlockId;
 use types::receipt::Receipt;
 use ethcore::executed::ExecutionError;
+use ethcore::client::QueueInfo;
+use ethcore::verification::QueueInfo as BlockQueueInfo;
 
 use jsonrpc_core::{Result, Error};
 use jsonrpc_core::futures::{future, Future};
@@ -78,6 +80,12 @@ pub struct LightFetch {
 	pub cache: Arc<Mutex<Cache>>,
 	/// Gas Price percentile
 	pub gas_price_percentile: usize,
+}
+
+impl QueueInfo for LightFetch {
+	fn queue_info(&self) -> BlockQueueInfo {
+		self.client.queue_info()
+	}
 }
 
 /// Extract a transaction at given index.

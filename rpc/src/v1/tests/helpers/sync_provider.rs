@@ -20,7 +20,7 @@ use std::collections::BTreeMap;
 use ethereum_types::H256;
 use parking_lot::RwLock;
 use futures::sync::mpsc;
-use sync::{SyncProvider, EthProtocolInfo, SyncStatus, SyncState, PeerInfo, TransactionStats, SyncState};
+use sync::{SyncProvider, EthProtocolInfo, SyncStatus, PeerInfo, TransactionStats, SyncState};
 
 /// TestSyncProvider config.
 pub struct Config {
