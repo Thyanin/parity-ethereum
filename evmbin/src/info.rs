@@ -107,7 +107,7 @@ pub fn run_transaction<T: Informant>(
 	spec: &ethjson::spec::ForkSpec,
 	pre_state: &pod_state::PodState,
 	post_root: H256,
-	env_info: &client::EnvInfo,
+	env_info_p: &client::EnvInfo,
 	transaction: transaction::SignedTransaction,
 	mut informant: T,
 	trie_spec: TrieSpec,
@@ -123,6 +123,11 @@ pub fn run_transaction<T: Informant>(
 			return;
 		},
 	};
+	
+	let mut env_info_s = env_info_p.clone();
+   	env_info_s.difficulty = U256::from(0);
+   	let env_info = &env_info_s;
+
 
 	informant.set_gas(env_info.gas_limit);
 
