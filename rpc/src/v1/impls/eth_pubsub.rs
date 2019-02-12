@@ -102,6 +102,7 @@ impl<C> EthPubSubClient<C> {
 		*client.heads_subscribers.write() = Subscribers::new_test();
 		*client.logs_subscribers.write() = Subscribers::new_test();
 		*client.transactions_subscribers.write() = Subscribers::new_test();
+		*client.sync_subscribers.write() = Subscribers::new_test();
 		client
 	}
 
